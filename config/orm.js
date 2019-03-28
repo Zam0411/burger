@@ -1,12 +1,5 @@
 var connection = require("../config/connection");
 
-//code borrowed from week 14 exercise 18 catsapp
-
-
-///////////////////functions/////////////////////
-// Helper function for SQL syntax.
-// helper function loops through and creates an array of question marks - ["?", "?", "?"] - and turns it into a string.
-// ["?", "?", "?"].toString() => "?,?,?";
 function printQuestionMarks(num) {
   var arr = [];
 
@@ -17,7 +10,7 @@ function printQuestionMarks(num) {
   return arr.toString();
 }
 
-// Helper function to convert object key/value pairs to SQL syntax
+
 function objToSql(ob) {
   var arr = [];
 
@@ -30,8 +23,7 @@ function objToSql(ob) {
       if (typeof value === "string" && value.indexOf(" ") >= 0) {
         value = "'" + value + "'";
       }
-      // e.g. {burger_name: 'Cheese Burg'} => ["burger_name='Cheese Burg'"]
-      // e.g. {devoured: true} => ["devoured=true"]
+
       arr.push(key + "=" + value);
     }
   }
@@ -40,7 +32,6 @@ function objToSql(ob) {
   return arr.toString();
 }
 
-///////////////end functions/////////////////////
 
 // Object for all our SQL statement functions.
 var orm = {
@@ -55,10 +46,7 @@ var orm = {
     });
   },
 
-/*
-cb = function(res) {
-      cb(res); //second layer function
-    }*/
+
 
   //insertOne()
   insertOne: function(table, cols, vals, cb) {
@@ -82,7 +70,7 @@ cb = function(res) {
     });
   },
   //updateOne()
-  // An example of objColVals would be {burger_name: delicious, devoured: true}
+  
   updateOne: function(table, objColVals, condition, cb) {
     var queryString = "UPDATE " + table;
 
